@@ -223,8 +223,8 @@
     <div class="login-wrapper">
         <div class="login-card">
             <div class="login-header">
-                <h1>Login To System</h1>
-                <p>Masuk ke akun Anda</p>
+                <h1>Switch Account</h1>
+                <p>Masuk ke akun Anda Yang Lain</p>
             </div>
             @if($errors->any())
                 <div class="error-message">
@@ -233,7 +233,7 @@
                     @endforeach
                 </div>
             @endif
-            <form action="{{ route('login') }}" method="POST">
+            <form action="{{ route('switch') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="username" class="form-label">Username</label>
@@ -264,8 +264,8 @@
                         />
                     </div>
                 </div>
-                <button type="submit" class="btn-login">Masuk</button>
-                <a href="/" class="back-link">Kembali Ke Beranda</a>
+                <button type="submit" class="btn-login">Beralih Akun</button>
+                <a href="javascript:void(0);" class="back-link" onclick="goBack()">Batal</a>
             </form>
             <div class="form-footer">
                 &copy; 2024 Sistem E-Commerce. Hak Cipta Dilindungi.
@@ -273,6 +273,11 @@
         </div>
     </div>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <script>
         // Menambahkan efek interaktif pada input
         document.addEventListener('DOMContentLoaded', function() {

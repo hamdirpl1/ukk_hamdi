@@ -1,16 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <h4 class="page-title">Dashboard Admin</h4>
-                <p class="page-title-sub">Selamat datang di panel administrasi sistem e-commerce</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Statistics Cards -->
     <div class="row">
         <div class="col-xl-3 col-md-6">
@@ -80,46 +70,6 @@
 
     <!-- Recent Data Tables -->
     <div class="row">
-        <div class="col-xl-6">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">User Terbaru</h5>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
-                                    <th>Tanggal Daftar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($recentUsers as $user)
-                                <tr>
-                                    <td>{{ $user->nama }}</td>
-                                    <td>{{ $user->username }}</td>
-                                    <td>
-                                        <span class="badge bg-{{ $user->role === 'admin' ? 'primary' : 'secondary' }}">
-                                            {{ ucfirst($user->role) }}
-                                        </span>
-                                    </td>
-                                    <td>{{ $user->created_at ? $user->created_at->format('d/m/Y') : '-' }}</td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="4" class="text-center">Belum ada data user</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header">

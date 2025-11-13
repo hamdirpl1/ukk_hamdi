@@ -44,4 +44,31 @@ class LoginController extends Controller
 
         return redirect('/');
     }
+
+    public function showSwitch()
+    {
+        return view('auth.switch');
+    }
+
+    public function switch(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        $user = User::where('username', $request->username)->first();
+
+        if ($user && Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+
+            if ($user->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->isMember()) {
+                return redirect()->route('member.dashboard');
+            }
+        }
+
+        return back()->withErrors(['login' => 'Username atau password salah.']);
+    }
 }

@@ -1,0 +1,93 @@
+@extends('layouts.admin')
+
+@section('content')
+<div class="col-12">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-0">Data Pengguna</h5>
+            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Tambah Pengguna
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="width:100%">
+                    <thead class="table-light">
+                        <tr>
+                            <th width="5%">No</th>
+                            <th>Nama Lengkap</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Tanggal Daftar</th>
+                            <th width="15%" class="text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($users as $index => $user)
+                        <tr>
+                            <td class="text-center">{{ $loop->iteration }}</td>
+                            <td class="fw-semibold">{{ $user->nama }}</td>
+                            <td>{{ $user->username }}</td>
+                            <td>
+                                <span class="badge bg-{{ $user->role === 'admin' ? 'primary' : 'success' }} rounded-pill">
+                                    {{ ucfirst($user->role) }}
+                                </span>
+                            </td>
+                            <td>{{ $user->created_at ? $user->created_at->format('d/m/Y H:i') : '-' }}</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-warning btn-sm" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form action="{{ route('admin.user.destroy', $user) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna {{ $user->nama }}?')"
+                                                title="Hapus">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td colspan="6" class="text-center py-4">
+                                <div class="text-muted">
+                                    <i class="fas fa-users fa-2x mb-3"></i>
+                                    <p>Belum ada data pengguna</p>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.table {
+    font-size: 0.875rem;
+}
+.table th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+.table > :not(caption) > * > * {
+    padding: 0.75rem 0.5rem;
+}
+.btn-group .btn {
+    margin: 0 2px;
+}
+.badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+</style>
+@endsection
