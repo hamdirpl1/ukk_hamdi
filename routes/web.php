@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\RegisterController;
 
 Route::get('/', function () {
     return view('layouts.beranda');
 });
 
+//Register
+Route::get('/register', [App\Http\Controllers\RegisterController::class, 'Register'])->name('auth.register');
+Route::post('/register', [RegisterController::class, 'storeregis']);
 // Login Routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -31,4 +35,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 // Member Routes
 Route::middleware(['auth', 'member'])->group(function () {
     Route::get('/member/dashboard', [MemberController::class, 'dashboard'])->name('member.dashboard');
+
+    Route::get('/member/toko', [MemberController::class, 'tokoView'])->name('member.toko.index');
+    Route::post('/member/toko', [MemberController::class, 'storeToko'])->name('member.toko.store');
+    Route::patch('/member/toko', [MemberController::class, 'updateToko'])->name('member.toko.update');
 });

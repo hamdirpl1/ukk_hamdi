@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Layout</title>
+    <title>Member</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
@@ -296,7 +296,7 @@
     {{-- Sidebar --}}
     <div class="sidebar">
         <div class="sidebar-header">
-            <h3>Admin System</h3>
+            <h3>Member</h3>
         </div>
         
         <div class="sidebar-menu">
@@ -304,19 +304,13 @@
                 <h6 class="section-title">MAIN</h6>
                 <ul>
                     <li>
-                        <a href="{{ route('admin.dashboard') }}" class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                        <a href="{{ route('member.dashboard') }}" class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                             <i class="fas fa-tachometer-alt"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.user.user') }}" class="menu-item {{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
-                            <i class="fas fa-users"></i>
-                            <span>Pengguna</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-item">
+                        <a href="{{ route('member.toko.index') }}" class="menu-item">
                             <i class="fas fa-store"></i>
                             <span>Toko</span>
                         </a>
@@ -325,12 +319,6 @@
                         <a href="#" class="menu-item">
                             <i class="fas fa-box"></i>
                             <span>Produk</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-item">
-                            <i class="fas fa-tags"></i>
-                            <span>Kategori Produk</span>
                         </a>
                     </li>
                 </ul>
@@ -367,8 +355,8 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
                 <div class="user-details">
-                    <span class="user-name">Administrator</span>
-                    <span class="user-role">System Admin</span>
+                    <span class="user-name">Member  </span>
+                    <span class="user-role">System Member</span>
                 </div>
             </div>
         </div>
