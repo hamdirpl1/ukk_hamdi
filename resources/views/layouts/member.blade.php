@@ -304,21 +304,21 @@
                 <h6 class="section-title">MAIN</h6>
                 <ul>
                     <li>
-                        <a href="{{ route('member.dashboard') }}" class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('member.toko.index') }}" class="menu-item">
+                        <a href="{{ route('member.toko.index') }}" class="menu-item {{ request()->routeIs('member.toko.*') ? 'active' : '' }}">
                             <i class="fas fa-store"></i>
                             <span>Toko</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-item">
+                        <a href="{{ route('member.produk.index') }}" class="menu-item {{ request()->routeIs('member.produk.*') ? 'active' : '' }}">
                             <i class="fas fa-box"></i>
                             <span>Produk</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('member.gambarproduk.index') }}" class="menu-item {{ request()->routeIs('member.gambarproduk.*') ? 'active' : '' }}">
+                            <i class="fas fa-image"></i>
+                            <span>Gambar Produk</span>
                         </a>
                     </li>
                 </ul>
@@ -328,7 +328,7 @@
                 <h6 class="section-title">MANAGEMENT</h6>
                 <ul>
                     <li>
-                        <a href="{{ route('switch') }}" class="menu-item">
+                        <a href="{{ route('switch') }}" class="menu-item {{ request()->routeIs('switch') ? 'active' : '' }}">
                             <i class="fas fa-right-left"></i>
                             <span>Switch Akun</span>
                         </a>
@@ -355,7 +355,7 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
                 <div class="user-details">
-                    <span class="user-name">Member  </span>
+                    <span class="user-name">Member</span>
                     <span class="user-role">System Member</span>
                 </div>
             </div>

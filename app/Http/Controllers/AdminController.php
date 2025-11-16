@@ -100,20 +100,153 @@ class AdminController extends Controller
         return redirect()->route('admin.user.user')->with('success', 'Pengguna berhasil diperbarui.');
     }
 
-    // public function destroyUser(User $user)
-    // {
-    //     // Cek jika user mencoba menghapus akun sendiri
-    //     if (auth()->id_user() === $user->id_user) {
-    //         return redirect()->route('admin.user.user')->with('error', 'Tidak dapat menghapus akun sendiri.');
-    //     }
+    public function deleteUser(User $user)
+    {
+        $user->delete();
 
-    //     // Cek jika user memiliki toko (jika ada relasi)
-    //     if (method_exists($user, 'toko') && $user->toko()->exists()) {
-    //         return redirect()->route('admin.user.user')->with('error', 'Tidak dapat menghapus pengguna yang memiliki toko.');
-    //     }
+        return redirect()->route('admin.user.user')->with('success', 'Pengguna berhasil dihapus.');
+    }
 
-    //     $user->delete();
+    //toko
+    public function tokoView()
+    {
+        $tokos = Toko::all();
+        return view('admin.toko.index', compact('tokos'));
+    }
 
-    //     return redirect()->route('admin.user.user')->with('success', 'Pengguna berhasil dihapus.');
-    // }
+    public function editToko(Toko $toko)
+    {
+        return view('admin.toko.edit', compact('toko'));
+    }
+
+    public function updateToko(Request $request, Toko $toko)
+    {
+        $request->validate([
+            'nama_toko' => 'required|string|max:100',
+            'deskripsi' => 'nullable|string',
+            'gambar' => 'nullable|string|max:100',
+            'kontak_toko' => 'required|string|max:13',
+            'alamat' => 'nullable|string',
+        ]);
+
+        $toko->update($request->only(['nama_toko', 'deskripsi', 'gambar', 'kontak_toko', 'alamat']));
+
+        return redirect()->route('admin.toko.index')->with('success', 'Toko berhasil diperbarui.');
+    }
+
+    public function deleteToko(Toko $toko)
+    {
+        $toko->delete();
+
+        return redirect()->route('admin.toko.index')->with('success', 'Toko berhasil dihapus.');
+    }
+
+    //produk
+    public function produkView()
+    {
+        $produks = Produk::with(['kategori', 'toko'])->get();
+        return view('admin.produk.index', compact('produks'));
+    }
+
+    public function createProduk()
+    {
+        $kategoris = Kategori::all();
+        $tokos = Toko::all();
+        return view('admin.produk.create', compact('kategoris', 'tokos'));
+    }
+
+    public function storeProduk(Request $request)
+    {
+        $request->validate([
+            'nama_produk' => 'required|string|max:100',
+            'id_kategori' => 'required|exists:kategoris,id_kategori',
+            'id_toko' => 'required|exists:tokos,id_toko',
+            'harga' => 'required|integer|min:0',
+            'stok' => 'required|integer|min:0',
+            'deskripsi' => 'nullable|string',
+            'tanggal_upload' => 'required|date',
+        ]);
+
+        Produk::create($request->only(['nama_produk', 'id_kategori', 'id_toko', 'harga', 'stok', 'deskripsi', 'tanggal_upload']));
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil ditambahkan.');
+    }
+
+    public function editProduk(Produk $produk)
+    {
+        $kategoris = Kategori::all();
+        $tokos = Toko::all();
+        return view('admin.produk.edit', compact('produk', 'kategoris', 'tokos'));
+    }
+
+    public function updateProduk(Request $request, Produk $produk)
+    {
+        $request->validate([
+            'nama_produk' => 'required|string|max:100',
+            'id_kategori' => 'required|exists:kategoris,id_kategori',
+            'id_toko' => 'required|exists:tokos,id_toko',
+            'harga' => 'required|integer|min:0',
+            'stok' => 'required|integer|min:0',
+            'deskripsi' => 'nullable|string',
+            'tanggal_upload' => 'required|date',
+        ]);
+
+        $produk->update($request->only(['nama_produk', 'id_kategori', 'id_toko', 'harga', 'stok', 'deskripsi', 'tanggal_upload']));
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil diperbarui.');
+    }
+
+    public function destroyProduk(Produk $produk)
+    {
+        $produk->delete();
+
+        return redirect()->route('admin.produk.index')->with('success', 'Produk berhasil dihapus.');
+    }
+
+    // Kategori
+    public function kategoriView()
+    {
+        $kategoris = Kategori::all();
+        return view('admin.kategori.index', compact('kategoris'));
+    }
+
+    public function createKategori()
+    {
+        return view('admin.kategori.create');
+    }
+
+    public function storeKategori(Request $request)
+    {
+        $request->validate([
+            'nama_kategori' => 'required|string|max:50|unique:kategoris,nama_kategori',
+        ]);
+
+        Kategori::create($request->only(['nama_kategori']));
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
+    }
+
+    public function editKategori(Kategori $kategori)
+    {
+        return view('admin.kategori.edit', compact('kategori'));
+    }
+
+    public function updateKategori(Request $request, Kategori $kategori)
+    {
+        $request->validate([
+            'nama_kategori' => 'required|string|max:50|unique:kategoris,nama_kategori,' . $kategori->id_kategori . ',id_kategori',
+        ]);
+
+        $kategori->update($request->only(['nama_kategori']));
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diperbarui.');
+    }
+
+    public function deleteKategori(Kategori $kategori)
+    {
+        $kategori->delete();
+
+        return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil dihapus.');
+    }
+
 }

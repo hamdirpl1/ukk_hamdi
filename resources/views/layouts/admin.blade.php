@@ -316,19 +316,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-item">
+                        <a href="{{ route('admin.toko.index') }}" class="menu-item">
                             <i class="fas fa-store"></i>
                             <span>Toko</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-item">
+                        <a href="{{ route('admin.produk.index') }}" class="menu-item">
                             <i class="fas fa-box"></i>
                             <span>Produk</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="menu-item">
+                        <a href="{{ route('admin.kategori.index') }}" class="menu-item">
                             <i class="fas fa-tags"></i>
                             <span>Kategori Produk</span>
                         </a>

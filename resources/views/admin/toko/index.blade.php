@@ -4,10 +4,7 @@
 <div class="col-12">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0">Data Pengguna</h5>
-            <a href="{{ route('admin.user.create') }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-plus"></i> Tambah Pengguna
-            </a>
+            <h5 class="card-title mb-0">Data Toko</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -15,35 +12,41 @@
                     <thead class="table-light">
                         <tr class="text-center">
                             <th width="5%">No</th>
-                            <th>Nama Lengkap</th>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Tanggal Daftar</th>
+                            <th>Nama Toko</th>
+                            <th width="10%">Logo</th>
+                            <th>Pemilik</th>
+                            <th>Alamat</th>
+                            <th>Kontak Toko</th>
+                            <th>Tanggal Dibuat</th>
                             <th width="15%" class="text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($users as $index => $user)
+                        @forelse($tokos as $index => $toko)
                         <tr class="text-center">
                             <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="fw-semibold">{{ $user->nama }}</td>
-                            <td>{{ $user->username }}</td>
+                            <td class="fw-semibold">{{ $toko->nama_toko }}</td>
                             <td>
-                                <span class="badge bg-{{ $user->role === 'admin' ? 'primary' : 'success' }} rounded-pill">
-                                    {{ ucfirst($user->role) }}
-                                </span>
+                                @if ($toko->gambar)
+                                <img src="{{ asset('storage/' . $toko->gambar) }}" alt="Logo" width="35" height="35" class="rounded-circle">
+                            @else
+                                <span class="bagde bg-secondary">Tidak Ada</span>
+                            @endif
                             </td>
-                            <td>{{ $user->created_at ? $user->created_at->format('d/m/Y') : '-' }}</td>
+                            <td>{{ $toko->user->nama ?? 'N/A' }}</td>
+                            <td>{{ $toko->alamat }}</td>
+                            <td>{{ $toko->kontak_toko }}</td>
+                            <td>{{ $toko->created_at ? $toko->created_at->format('d/m/Y') : '-' }}</td>
                             <td class="text-center">
                                 <div class="btn-group" role="group">
-                                    <a href="{{ route('admin.user.edit', $user) }}" class="btn btn-warning btn-sm" title="Edit">
+                                    <a href="{{ route('admin.toko.edit', $toko) }}" class="btn btn-warning btn-sm" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('admin.user.destroy', $user) }}" method="POST" class="d-inline">
+                                    <form action="{{ route('admin.toko.destroy', $toko) }}" method="POST" class="d-inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna {{ $user->nama }}?')"
+                                                onclick="return confirm('Apakah Anda yakin ingin menghapus toko {{ $toko->nama_toko }}?')"
                                                 title="Hapus">
                                             <i class="fas fa-trash"></i>
                                         </button>
@@ -54,9 +57,10 @@
                         @empty
                         <tr>
                             <td colspan="6" class="text-center py-4">
-                                <div class="text-muted">
-                                    <i class="fas fa-users fa-2x mb-3"></i>
-                                    <p>Belum ada data pengguna</p>
+                                <div class="text-muted
+">
+                                    <i class="fas fa-store fa-2x mb-3"></i>
+                                    <p>Belum ada data toko</p>
                                 </div>
                             </td>
                         </tr>
@@ -67,7 +71,6 @@
         </div>
     </div>
 </div>
-
 <style>
 .table {
     font-size: 0.875rem;

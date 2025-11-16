@@ -25,13 +25,5 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-        // Create sample member user
-        User::create([
-            'nama' => 'Member',
-            'kontak' => '081234567891',
-            'username' => 'member',
-            'password' => Hash::make('member123'),
-            'role' => 'member',
-        ]);
     }
 }

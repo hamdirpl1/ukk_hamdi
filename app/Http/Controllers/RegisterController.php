@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -23,7 +24,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'nama'=> $request->nama,
             'kontak'=> $request->kontak,
             'username'=> $request->username,
@@ -31,6 +32,8 @@ class RegisterController extends Controller
             'role'=> 'member',
         ]);
 
-        return redirect()->route('member.dashboard')->with('success', 'Registrasi berhasil. Silakan login.');
+        Auth::login($user);
+
+        return redirect()->route('member.dashboard')->with('success', 'Registrasi berhasil.');
     }
 }

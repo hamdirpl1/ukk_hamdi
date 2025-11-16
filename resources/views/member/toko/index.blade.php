@@ -177,69 +177,6 @@
             @endif
         </div>
     </div>
-
-    <!-- Quick Actions -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card border-0 shadow-sm">
-                <div class="card-header bg-transparent border-bottom-0">
-                    <h5 class="card-title mb-0">Aksi Cepat</h5>
-                </div>
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-sm bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
-                                        <i class="fas fa-box text-primary"></i>
-                                    </div>
-                                    <h6 class="mb-2">Tambah Produk</h6>
-                                    <p class="text-muted small mb-3">Tambahkan produk baru ke toko</p>
-                                    <button class="btn btn-outline-primary btn-sm">Mulai</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-sm bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
-                                        <i class="fas fa-chart-line text-success"></i>
-                                    </div>
-                                    <h6 class="mb-2">Lihat Statistik</h6>
-                                    <p class="text-muted small mb-3">Pantau performa toko Anda</p>
-                                    <button class="btn btn-outline-primary btn-sm">Lihat</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-sm bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
-                                        <i class="fas fa-cog text-warning"></i>
-                                    </div>
-                                    <h6 class="mb-2">Pengaturan</h6>
-                                    <p class="text-muted small mb-3">Kelola pengaturan toko</p>
-                                    <button class="btn btn-outline-primary btn-sm">Kelola</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card border">
-                                <div class="card-body text-center p-4">
-                                    <div class="avatar-sm bg-info bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
-                                        <i class="fas fa-question-circle text-info"></i>
-                                    </div>
-                                    <h6 class="mb-2">Bantuan</h6>
-                                    <p class="text-muted small mb-3">Dapatkan panduan toko</p>
-                                    <button class="btn btn-outline-primary btn-sm">Bantuan</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!-- Create Toko Modal -->
@@ -325,8 +262,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-arrow-left me-2"></i>Batal
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-2"></i>Simpan Perubahan
+                    </button>
                 </div>
             </form>
         </div>

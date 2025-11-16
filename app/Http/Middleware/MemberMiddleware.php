@@ -21,7 +21,7 @@ class MemberMiddleware
         }
 
         if (!Auth::user()->isMember()) {
-            return redirect()->route('member.dashboard')->withErrors(['access' => 'Akses ditolak.']);
+            return redirect()->route('member.toko.index')->withErrors(['access' => 'Akses ditolak.']);
         }
 
         return $next($request);
