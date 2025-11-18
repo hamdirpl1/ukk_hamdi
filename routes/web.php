@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RegisterController;
 
-Route::get('/', function () {
-    return view('layouts.beranda');
-});
+Route::get('/', [Controller::class, 'index'])->name('beranda.index');
 
 //Register
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'Register'])->name('auth.register');

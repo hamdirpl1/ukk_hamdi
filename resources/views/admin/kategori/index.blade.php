@@ -22,6 +22,7 @@
                     <thead class="table-light">
                         <tr class="text-center">
                             <th width="5%">No</th>
+                            <th width="15%">Gambar</th>
                             <th>Nama Kategori</th>
                             <th>Tanggal Dibuat</th>
                             <th width="15%" class="text-center">Aksi</th>
@@ -31,6 +32,13 @@
                         @forelse($kategoris as $index => $kategori)
                         <tr class="text-center">
                             <td class="text-center">{{ $loop->iteration }}</td>
+                            <td>
+                                @if($kategori->gb)
+                                    <img src="{{ asset($kategori->gb) }}" alt="Gambar Kategori" width="40" height="40" class="rounded-circle">
+                                @else
+                                    <span class="text-muted">Tidak ada gambar</span>
+                                @endif
+                            </td>
                             <td class="fw-semibold">{{ $kategori->nama_kategori }}</td>
                             <td>{{ $kategori->created_at ? $kategori->created_at->format('d/m/Y') : '-' }}</td>
                             <td class="text-center">

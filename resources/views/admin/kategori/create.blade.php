@@ -9,7 +9,7 @@
             </h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.kategori.store') }}" method="POST">
+            <form action="{{ route('admin.kategori.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">
@@ -22,6 +22,17 @@
                             @error('nama_kategori')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="gb" class="form-label">Gambar Kategori</label>
+                            <input type="file" class="form-control @error('gb') is-invalid @enderror"
+                                   id="gb" name="gb" accept="image/*">
+                            @error('gb')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <small class="form-text text-muted">Format: JPEG, PNG, JPG. Maksimal 2MB.</small>
                         </div>
                     </div>
                 </div>

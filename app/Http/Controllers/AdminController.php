@@ -77,7 +77,6 @@ class AdminController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'kontak' => 'required|string|max:13',
-            // validasi unique username, abaikan milik user saat ini (pk: id_user)
             'username' => 'required|unique:users,username,' . $user->id_user . ',id_user',
             'password' => 'nullable|string|min:6|confirmed',
             'role' => 'required|in:admin,member',
@@ -142,10 +141,28 @@ class AdminController extends Controller
     }
 
     //produk
-    public function produkView()
+    public function produkView(Request $request)
     {
-        $produks = Produk::with(['kategori', 'toko'])->get();
-        return view('admin.produk.index', compact('produks'));
+        $kategoris = Kategori::all();
+        $tokos = Toko::all();
+
+        $query = Produk::with(['kategori', 'toko']);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $query->where('nama_produk', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->has('kategori') && !empty($request->kategori)) {
+            $query->where('id_kategori', $request->kategori);
+        }
+
+        if ($request->has('toko') && !empty($request->toko)) {
+            $query->where('id_toko', $request->toko);
+        }
+
+        $produks = $query->get();
+
+        return view('admin.produk.index', compact('produks', 'kategoris', 'tokos'));
     }
 
     public function createProduk()
@@ -219,9 +236,19 @@ class AdminController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:50|unique:kategoris,nama_kategori',
+            'gb' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        Kategori::create($request->only(['nama_kategori']));
+        $data = $request->only(['nama_kategori']);
+
+        if ($request->hasFile('gb')) {
+            $file = $request->file('gb');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/kategoris'), $filename);
+            $data['gb'] = 'images/kategoris/' . $filename;
+        }
+
+        Kategori::create($data);
 
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
@@ -235,9 +262,24 @@ class AdminController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:50|unique:kategoris,nama_kategori,' . $kategori->id_kategori . ',id_kategori',
+            'gb' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $kategori->update($request->only(['nama_kategori']));
+        $data = $request->only(['nama_kategori']);
+
+        if ($request->hasFile('gb')) {
+            // Delete old image if exists
+            if ($kategori->gb && file_exists(public_path($kategori->gb))) {
+                unlink(public_path($kategori->gb));
+            }
+
+            $file = $request->file('gb');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/kategoris'), $filename);
+            $data['gb'] = 'images/kategoris/' . $filename;
+        }
+
+        $kategori->update($data);
 
         return redirect()->route('admin.kategori.index')->with('success', 'Kategori berhasil diperbarui.');
     }

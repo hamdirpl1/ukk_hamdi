@@ -17,6 +17,39 @@
                 </div>
             @endif
 
+            <div class="search">
+                <form class="search-form d-flex mb-3" method="GET" action="{{ route('admin.produk.index') }}">
+                    <input type="text" name="search" class="form-control form-control-sm" placeholder="Cari produk..." value="{{ request('search') }}">
+
+                    <select name="kategori" class="form-select form-select-sm">
+                        <option value="">Semua Kategori</option>
+                        @foreach($kategoris as $kategori)
+                            <option value="{{ $kategori->id_kategori }}" {{ request('kategori') == $kategori->id_kategori ? 'selected' : '' }}>
+                                {{ $kategori->nama_kategori }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <select name="toko" class="form-select form-select-sm">
+                        <option value="">Semua Toko</option>
+                        @foreach($tokos as $toko)
+                            <option value="{{ $toko->id_toko }}" {{ request('toko') == $toko->id_toko ? 'selected' : '' }}>
+                                {{ $toko->nama_toko }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    @if(request('search') || request('kategori') || request('toko'))
+                        <a href="{{ route('admin.produk.index') }}" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-times"></i>
+                        </a>
+                    @endif
+                </form>
+            </div>
+
             <div class="table-responsive">
                 <table class="table table-bordered table-hover" style="width:100%">
                     <thead class="table-light">
@@ -95,6 +128,55 @@
 .badge {
     font-size: 0.75rem;
     padding: 0.35em 0.65em;
+}
+
+.search-form input:focus,
+.search-form select:focus,
+.search-form .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* Container form */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+    flex-wrap: nowrap;
+}
+
+/* Panjang form */
+.search-form input {
+    width: 280px;      /* <-- UBAH PANJANG SEARCH DI SINI */
+}
+
+.search-form select {
+    width: 200px;      /* <-- UBAH PANJANG DROPDOWN DI SINI */
+}
+
+/* Style umum */
+.search-form input,
+.search-form select {
+    border: 1px solid #dee2e6;
+    font-size: 0.85rem;
+    height: 34px;
+    margin: 0 !important;
+}
+
+.search-form input:focus,
+.search-form select:focus,
+.search-form .btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Tombol search */
+.search-form .btn {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    margin: 0 !important;
 }
 </style>
 @endsection
