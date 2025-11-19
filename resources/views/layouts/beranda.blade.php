@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beranda</title>
+    <title>SlbKantin</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/foto/lg.png') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -32,16 +33,14 @@
             line-height: 1.6;
         }
 
-        /* =====================================
-                    NAVBAR
-        ====================================== */
+        /* NAVBAR */
         .navbar {
             background: #fff;
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .nav-container {
@@ -68,8 +67,7 @@
             display: flex;
             gap: 1.2rem;
             align-items: center;
-            white-space: nowrap;
-            list-style: none; /* Menghilangkan titik pada menu */
+            list-style: none;
         }
 
         .nav-link {
@@ -102,12 +100,17 @@
             width: 80%;
         }
 
-        /* =====================================
-            SEARCH BAR (TOKOPEDIA STYLE)
-        ====================================== */
+        /* SEARCH */
         .search-container {
-            flex: 1;           /* search jadi melebar otomatis */
+            flex: 1;
             max-width: 550px;
+        }
+
+        .search-form input:focus,
+        .search-form select:focus,
+        .search-form .btn:focus {
+            outline: none !important;
+            box-shadow: none !important;
         }
 
         .search-form {
@@ -140,16 +143,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 50px; /* Memberikan lebar minimum untuk tombol */
         }
 
         .search-button:hover {
             background: var(--secondary);
         }
 
-        /* =====================================
-                    MAIN
-        ====================================== */
+        /* MAIN */
         main {
             max-width: 1200px;
             margin: 0 auto;
@@ -157,77 +157,10 @@
             min-height: calc(100vh - 160px);
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e1f5fe 100%);
-            border-radius: 12px;
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Product Grid */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 1rem;
-        }
-
-        .product-name {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .product-price {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1rem;
-        }
-
-        /* =====================================
-                    FOOTER
-        ====================================== */
+        /* FOOTER */
         footer {
             background: #fff;
-            padding: 2rem 0;
+            padding: 2rem 0 1rem;
             border-top: 1px solid #e2e8f0;
             font-size: 0.9rem;
             color: #4a5568;
@@ -242,9 +175,9 @@
         .footer-top {
             display: flex;
             justify-content: space-between;
-            gap: 2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .footer-section {
@@ -253,48 +186,54 @@
         }
 
         .footer-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
             color: #1a202c;
         }
 
         .footer-links {
             list-style: none;
+            line-height: 1.4;
         }
 
         .footer-links li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .footer-links a {
             text-decoration: none;
             color: #4a5568;
             transition: 0.3s;
+            font-size: 0.85rem;
+            display: block;
+            padding: 0.1rem 0;
         }
 
         .footer-links a:hover {
             color: var(--primary);
+            transform: translateX(3px);
         }
 
         .footer-bottom {
-            padding-top: 1.5rem;
+            padding-top: 1rem;
             border-top: 1px solid #e2e8f0;
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1rem;
             align-items: center;
+            font-size: 0.8rem;
         }
 
         .footer-social {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .social-link {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -302,6 +241,7 @@
             border-radius: 50%;
             color: #4a5568;
             transition: 0.3s;
+            text-decoration: none;
         }
 
         .social-link:hover {
@@ -310,9 +250,6 @@
             transform: translateY(-2px);
         }
 
-        /* =====================================
-                    RESPONSIVE
-        ====================================== */
         @media (max-width: 768px) {
             .nav-container {
                 flex-direction: column;
@@ -346,10 +283,8 @@
     <!-- NAVBAR -->
     <nav class="navbar">
         <div class="nav-container">
-        
             <a href="/" class="logo">Slb<span>Kantin</span></a>
-        
-            <!-- SEARCH DI DALAM NAVBAR -->
+
             <div class="search-container">
                 <form class="search-form" id="searchForm">
                     <input type="text" id="searchInput" class="search-input" placeholder="Cari makanan, minuman, dan lainnya...">
@@ -358,7 +293,7 @@
                     </button>
                 </form>
             </div>
-        
+
             <ul class="nav-menu">
                 <li><a href="/" class="nav-link">Beranda</a></li>
                 <li><a href="/produk" class="nav-link">Produk</a></li>
@@ -368,10 +303,9 @@
         </div>
     </nav>
 
-
     <!-- CONTENT -->
     <main>
-        @yield('content')    
+        @yield('content')
     </main>
 
     <!-- FOOTER -->
@@ -379,60 +313,39 @@
         <div class="footer-container">
 
             <div class="footer-top">
+
                 <div class="footer-section">
                     <h3>SlbKantin</h3>
                     <ul class="footer-links">
-                        <li><a href="/tentang">Tentang Kami</a></li>
-                        <li><a href="/karir">Karir</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/affiliate">Program Affiliate</a></li>
+                        <li>
+                            <a href="/tentang">
+                                SLB Kantin adalah kantin yang menyediakan berbagai kebutuhan harian bagi siswa dan guru. Kami menyajikan aneka makanan, minuman, snack, serta alat tulis dengan harga yang terjangkau dan kualitas yang terjaga. Dengan suasana yang bersih, ramah, dan nyaman, SLB Kantin hadir untuk mendukung aktivitas belajar dengan menyediakan segala kebutuhan sekolah dalam satu tempat.
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
                     <h3>Beli</h3>
                     <ul class="footer-links">
-                        <li><a href="/tagihan">Tagihan</a></li>
-                        <li><a href="/topup">Top Up & Tagihan</a></li>
-                        <li><a href="/travel">Travel & Entertainment</a></li>
-                        <li><a href="/elektronik">Elektronik</a></li>
+                        <li><a href="/tagihan">Makanan</a></li>
+                        <li><a href="/topup">Minuman</a></li>
+                        <li><a href="/travel">Snack</a></li>
+                        <li><a href="/elektronik">Alat Tulis</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-section">
-                    <h3>Bantuan & Panduan</h3>
-                    <ul class="footer-links">
-                        <li><a href="/pusat-bantuan">Pusat Bantuan</a></li>
-                        <li><a href="/cara-belanja">Cara Berbelanja</a></li>
-                        <li><a href="/cara-bayar">Cara Pembayaran</a></li>
-                        <li><a href="/pengembalian">Pengembalian Barang</a></li>
+                    <h3></h3>
+                    <ul class="">
+                        
                     </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h3>Jual</h3>
-                    <ul class="footer-links">
-                        <li><a href="/jual">Mulai Berjualan</a></li>
-                        <li><a href="/promo">Promo Toko</a></li>
-                        <li><a href="/affiliate-seller">Program Affiliate Seller</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h3>Keamanan & Privasi</h3>
-                    <ul class="footer-links">
-                        <li><a href="/privasi">Kebijakan Privasi</a></li>
-                        <li><a href="/syarat">Syarat & Ketentuan</a></li>
-                        <li><a href="/keamanan">Panduan Keamanan</a></li>
-                        <li><a href="/penipuan">Laporkan Penipuan</a></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="footer-bottom">
-                <div class="footer-copyright">
-                    &copy; 2023 SlbKantin. All rights reserved.
-                </div>
+                <div>&copy; 2023 SlbKantin. All rights reserved.</div>
 
                 <div class="footer-social">
                     <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
@@ -444,23 +357,6 @@
 
         </div>
     </footer>
-
-    <script>
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchForm = document.getElementById('searchForm');
-        
-        // Handle form submission
-        searchForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const query = searchInput.value.trim();
-            if (query) {
-                alert(`Mencari: ${query}`);
-                // In a real application, you would redirect to search results page
-                // window.location.href = `/search?q=${encodeURIComponent(query)}`;
-            }
-        });
-    </script>
 
 </body>
 </html>

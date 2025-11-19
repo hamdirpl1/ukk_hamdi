@@ -8,6 +8,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', [Controller::class, 'index'])->name('beranda.index');
+Route::get('/produk', [Controller::class,'produk'])->name('beranda.produk');
+Route::get('/toko', [Controller::class,'toko'])->name('beranda.toko');
 
 //Register
 Route::get('/register', [App\Http\Controllers\RegisterController::class, 'Register'])->name('auth.register');

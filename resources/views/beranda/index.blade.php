@@ -24,6 +24,32 @@ body {
     line-height: 1.6;
 }
 
+.judul {
+    text-align: center;
+    margin: 40px 0;
+    padding: 80px 20px;
+    background-image: url('assets/foto/slb.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border-radius: 10px;
+}
+
+.judul-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.judul-subtitle {
+    font-size: 1.125rem;
+    color: #212529;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 /* ============================
     CATEGORY
    ============================ */
@@ -74,127 +100,93 @@ body {
 
 /* ============================
     PRODUCT CARD
-   ============================ */
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-}
+============================ */
+    .produk-section {
+        padding: 20px 0;
+    }
 
-.product-card {
-    width: 90%;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #eee;
-    transition: 0.2s ease;
-    padding-bottom: 0;
-}
+    .produk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
 
-.product-card:hover {
-    box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-    transform: translateY(-3px);
-}
+    .produk-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: 0.2s ease;
+        cursor: pointer;
+    }
 
-/* badge */
-.product-badge {
-    position: absolute;
-    background: #ff3d3d;
-    color: #fff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 4px 7px;
-    border-bottom-right-radius: 6px;
-    top: 0;
-    left: 0;
-}
+    .produk-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        /* card tetap diam, tidak bergeser */
+        transform: none;
+    }
 
-/* image */
-.product-image-container {
-    position: relative;
-    width: 100%;
-    height: 220px;
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-.product-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .produk-img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        background: #f2f2f2;
+    }
 
-/* info */
-.product-info {
-    padding: 10px;
-}
-.product-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 5px;
-    line-height: 1.3em;
-    height: 38px;
-    overflow: hidden;
-}
-.product-price-main {
-    font-size: 18px;
-    font-weight: 700;
-    color: #111;
-}
-.product-price-strike {
-    font-size: 13px;
-    color: #888;
-    text-decoration: line-through;
-    margin-left: 4px;
-}
+    .produk-body {
+        padding: 10px 12px;
+        position: relative;
+    }
 
-.product-rating {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 13px;
-    color: #555;
-    margin-top: 6px;
-}
-.product-rating i {
-    color: #FFD43B;
-}
-.product-location {
-    font-size: 13px;
-    color: #666;
-    margin-top: 5px;
-}
+    .produk-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 4px;
+        color: #333;
+        line-height: 1.3;
+        height: 40px;
+        overflow: hidden;
+    }
 
-/* ============================
-    BUTTON DETAIL (NEW)
-   ============================ */
-.product-detail-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: var(--primary);
-    color: #fff;
-    text-align: center;
-    font-weight: 600;
-    border-radius: 0 0 10px 10px;
-    transition: 0.2s;
-    text-decoration: none;
-}
-.product-detail-btn:hover {
-    background-color: #3f37c9;
-}
-.product-detail-btn:active {
-    transform: scale(0.98);
-}
+    .produk-price {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #e67e22;
+        margin-bottom: 6px;
+    }
+
+    /* Lokasi & Nama toko hover effect */
+    .produk-location, 
+    .produk-toko {
+        font-size: 0.75rem;
+        color: #777;
+        transition: 0.25s ease;
+        height: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+    .produk-toko {
+        opacity: 0;
+        position: absolute;
+        left: 12px;
+        bottom: 10px;
+    }
+
+    .produk-card:hover .produk-location {
+        opacity: 0;
+    }
+
+    .produk-card:hover .produk-toko {
+        opacity: 1;
+        color: #555;
+    }
 
 </style>
 
-<section class="search-section">
-    <h1 class="search-title">Temukan Produk Yang Anda Cari</h1>
-    <p class="search-subtitle">Cari dari ratusan produk berkualitas dengan harga terbaik di SmartKantin</p>
+<section class="judul">
+    <h1 class="judul-title">Temukan Produk Yang Anda Cari</h1>
+    <p class="judul-subtitle">Cari dari ratusan produk berkualitas dengan harga terbaik di SmartKantin</p>
 </section>
 
 <!-- ============================
@@ -226,45 +218,45 @@ body {
 <section class="featured-section">
     <h2 class="section-title">Produk Unggulan</h2>
 
-    <div class="product-grid">
+    <div class="produk-grid">
+
         @foreach($produks as $p)
-        <div class="product-card">
+        <a href="" style="text-decoration:none; color:inherit;">
+            <div class="produk-card">
 
-            @if($p->diskon > 0)
-            <div class="product-badge">{{ $p->diskon }}%</div>
-            @endif
-
-            <div class="product-image-container">
+                {{-- Gambar Produk --}}
                 @if($p->gambar->count() > 0)
-                    <img src="{{ asset('storage/' . $p->gambar->first()->gambar) }}" alt="{{ $p->nama_produk }}">
+                    <img class="produk-img" 
+                         src="{{ asset('storage/' . $p->gambar->first()->gambar) }}" 
+                         alt="{{ $p->nama_produk }}">
                 @else
-                    <img src="" alt="{{ $p->nama_produk }}">
+                    <img class="produk-img" 
+                         src="{{ asset('assets/foto/noimage.png') }}" 
+                         alt="Tidak ada gambar">
                 @endif
-            </div>
 
-            <div class="product-info">
-                <div class="product-name">{{ $p->nama_produk }}</div>
+                <div class="produk-body">
+                    <div class="produk-title">{{ $p->nama_produk }}</div>
 
-                <div>
-                    <span class="product-price-main">
-                        Rp{{ number_format($p->harga)}}
-                    </span>
-                </div>
+                    <div class="produk-price">
+                        Rp{{ number_format($p->harga, 0, ',', '.') }}
+                    </div>
 
-                <div class="product-rating">
-                    <i class="fas fa-star"></i> 
-                    <span>{{'4.9' }}</span> • 
-                    <span>{{'1rb+' }} terjual</span>
-                </div>
+                    <div class="produk-location">
+                        <i class="fas fa-map-marker-alt"></i>&nbsp; 
+                        {{ $p->toko->alamat ?? 'Alamat tidak tersedia' }}
+                    </div>
 
-                <div class="product-location">
-                    <i class="fas fa-map-marker-alt"></i> {{ $p->toko->alamat ?? 'Alamat tidak tersedia' }}
-                    <i class="fas fa-store-alt"></i> {{ $p->toko->nama_toko ?? 'Alamat tidak tersedia' }}
+                    <div class="produk-toko">
+                        <i class="fas fa-store"></i>&nbsp; 
+                        {{ $p->toko->nama_toko ?? 'Toko Tidak Diketahui' }}
+                    </div>
+
                 </div>
             </div>
-            <a href="#" class="product-detail-btn">Detail</a>
-        </div>
+        </a>
         @endforeach
+
     </div>
 </section>
 
